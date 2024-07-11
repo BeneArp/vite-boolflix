@@ -1,11 +1,52 @@
 <script>
 import AppReserch from './AppReserch.vue';
 
+import {store} from '../store'
+import axios from 'axios'
+
+
     export default {
         name: "AppHeader",
         components:{
             AppReserch,
+        },
+
+        data(){
+            return{
+                titoloSezioneFilm: "Film",
+                titoloSezioneSerie: "Serie Tv",
+                store,
+            }
+        },
+
+    methods:{
+        getFilmsList(){
+            let filmUrl = `${store.apiFilm}${store.apiKey}&query=${store.searchWord}`
+            console.log(filmUrl);
+
+            axios.get(filmUrl).then(result => {
+                // console.log(result.data.results);
+                store.filmList = result.data.results;
+                console.log(store.filmList);
+            })
+        },
+
+        getSeriesList(){
+            let serieUrl = `${store.apiSerie}${store.apiKey}&query=${store.searchWord}`
+            console.log(serieUrl);
+
+            axios.get(serieUrl).then(result => {
+                // console.log(result.data.results);
+                store.serieList = result.data.results;
+                console.log(store.serieList);
+            })
         }
+    },
+
+    // created(){
+    //     this.getFilmsList();
+    //     this.getSeriesList();
+    // }
     }
 
 </script>
@@ -18,7 +59,7 @@ import AppReserch from './AppReserch.vue';
                 <h1>BOOLFLIX</h1>
             </div>
 
-            <AppReserch/>
+            <AppReserch @search="getFilmsList(),getSeriesList()"/>
 
         </div>
     </header>    

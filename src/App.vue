@@ -2,9 +2,6 @@
 import AppHeader from './components/AppHeader.vue'
 import AppCardContainer from './components/AppCardContainer.vue'
 
-import {store} from './store'
-import axios from 'axios'
-
 export default{
     name: 'App',
     components:{
@@ -13,37 +10,13 @@ export default{
     },
 
     data(){
-        return{
-            titoloSezioneFilm: "Film",
-            titoloSezioneSerie: "Serie Tv",
-            store,
-        }
-    },
+            return{
+                titoloSezioneFilm: "Film",
+                titoloSezioneSerie: "Serie Tv",
 
-    methods:{
-        getFilmsList(){
-            let filmUrl = `${store.apiFilm}${store.apiKey}&query=${store.searchWord}`
-            console.log(filmUrl);
-
-            axios.get(filmUrl).then(result => {
-                console.log(result.data.results);
-            })
+            }
         },
 
-        getSeriesList(){
-            let serieUrl = `${store.apiSerie}${store.apiKey}&query=${store.searchWord}`
-            console.log(serieUrl);
-
-            axios.get(serieUrl).then(result => {
-                console.log(result.data.results);
-            })
-        }
-    },
-
-    created(){
-        this.getFilmsList();
-        this.getSeriesList();
-    }
 }
 
 </script>
