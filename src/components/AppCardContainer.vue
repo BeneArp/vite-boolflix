@@ -1,8 +1,14 @@
 <script>
+import FilmCard from './FilmCard.vue';
+
     export default {
         name: "AppCardContainer",
 
-        props:['title']
+        props:['title'],
+
+        components:{
+            FilmCard,
+        }
     }
 
 </script>
@@ -13,6 +19,11 @@
         <h2>{{title}}</h2>
 
         <div class="card-container">
+
+            <FilmCard/>
+            <FilmCard/>
+            <FilmCard/>
+            <FilmCard/>
 
         </div>
 
@@ -33,7 +44,9 @@
         }
 
         .card-container{
-            padding: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
             margin: 2em 0;
             // debug
             background-color: lightslategray;
@@ -41,7 +54,4 @@
         }
     }
 
-
-    
-    
 </style>
