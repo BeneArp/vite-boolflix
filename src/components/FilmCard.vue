@@ -1,4 +1,3 @@
-<!-- f960fe04266e9ffe3385b637d92f14f7 -->
 <script>
     export default {
         name: "FilmCard",

@@ -1,6 +1,14 @@
 <script>
+    import {store} from '../store'
+
     export default {
         name: "AppReserch",
+
+        data(){
+            return{
+                store,
+            }
+        }
     }
 
 </script>
@@ -9,8 +17,8 @@
 
 
     <div>
-        <input type="text" placeholder="Serch">
-        <button>Cerca</button>
+        <input type="text" placeholder="Serch" v-model="store.searchWord">
+        <button @click="$emit('search')">Cerca</button>
     </div>
 
 
