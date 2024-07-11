@@ -21,18 +21,28 @@ export default{
     },
 
     methods:{
-        getFilmList(){
+        getFilmsList(){
             let filmUrl = `${store.apiFilm}${store.apiKey}&query=${store.searchWord}`
             console.log(filmUrl);
 
             axios.get(filmUrl).then(result => {
                 console.log(result.data.results);
             })
+        },
+
+        getSeriesList(){
+            let serieUrl = `${store.apiSerie}${store.apiKey}&query=${store.searchWord}`
+            console.log(serieUrl);
+
+            axios.get(serieUrl).then(result => {
+                console.log(result.data.results);
+            })
         }
     },
 
     created(){
-        this.getFilmList();
+        this.getFilmsList();
+        this.getSeriesList();
     }
 }
 
