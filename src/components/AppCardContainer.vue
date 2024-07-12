@@ -64,7 +64,6 @@ import {store} from '../store'
             align-items: flex-start;
             margin: 2em 0;
             // debug
-            background-color: lightslategray;
         }
     }
 
