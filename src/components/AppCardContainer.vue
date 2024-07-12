@@ -1,5 +1,6 @@
 <script>
 import FilmCard from './FilmCard.vue';
+import {store} from '../store'
 
     export default {
         name: "AppCardContainer",
@@ -8,6 +9,12 @@ import FilmCard from './FilmCard.vue';
 
         components:{
             FilmCard,
+        },
+
+        data(){
+            return{
+                store,
+            }
         }
     }
 
@@ -16,14 +23,22 @@ import FilmCard from './FilmCard.vue';
 <template>
 
     <div class="container">
-        <h2>{{title}}</h2>
+        <h2>Film</h2>
 
         <div class="card-container">
 
-            <FilmCard/>
-            <FilmCard/>
-            <FilmCard/>
-            <FilmCard/>
+            <FilmCard v-for="card in store.filmList" :info="card"/>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h2>Serie Tv</h2>
+
+        <div class="card-container">
+
+            <FilmCard v-for="card in store.serieList" :info="card"/>
 
         </div>
 

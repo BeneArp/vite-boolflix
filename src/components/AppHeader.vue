@@ -13,33 +13,37 @@ import axios from 'axios'
 
         data(){
             return{
-                titoloSezioneFilm: "Film",
-                titoloSezioneSerie: "Serie Tv",
                 store,
             }
         },
 
     methods:{
         getFilmsList(){
-            let filmUrl = `${store.apiFilm}${store.apiKey}&query=${store.searchWord}`
-            console.log(filmUrl);
+            if(store.searchWord !== ''){
+                
+                let filmUrl = `${store.apiFilm}${store.apiKey}&query=${store.searchWord}`
+                console.log(filmUrl);
 
-            axios.get(filmUrl).then(result => {
-                // console.log(result.data.results);
-                store.filmList = result.data.results;
-                console.log(store.filmList);
-            })
+                axios.get(filmUrl).then(result => {
+                    // console.log(result.data.results);
+                    store.filmList = result.data.results;
+                    console.log(store.filmList);
+                })
+            }
         },
 
         getSeriesList(){
-            let serieUrl = `${store.apiSerie}${store.apiKey}&query=${store.searchWord}`
-            console.log(serieUrl);
+            if(store.searchWord !== ''){
 
-            axios.get(serieUrl).then(result => {
-                // console.log(result.data.results);
-                store.serieList = result.data.results;
-                console.log(store.serieList);
-            })
+                let serieUrl = `${store.apiSerie}${store.apiKey}&query=${store.searchWord}`
+                console.log(serieUrl);
+
+                axios.get(serieUrl).then(result => {
+                    // console.log(result.data.results);
+                    store.serieList = result.data.results;
+                    console.log(store.serieList);
+                })
+            }
         }
     },
 

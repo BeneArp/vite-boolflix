@@ -1,6 +1,8 @@
 <script>
     export default {
         name: "FilmCard",
+
+        props:['info']
     }
 
 </script>
@@ -9,7 +11,7 @@
 
 
     <div class="card">
-        
+        <p></p>
     </div>
 
 

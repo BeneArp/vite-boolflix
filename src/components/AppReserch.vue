@@ -17,7 +17,7 @@
 
 
     <div>
-        <input type="text" placeholder="Serch" v-model="store.searchWord">
+        <input type="text" placeholder="Serch" v-model="store.searchWord" @keyup.enter="$emit('search')">
         <button @click="$emit('search')">Cerca</button>
     </div>
 

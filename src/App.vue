@@ -2,20 +2,13 @@
 import AppHeader from './components/AppHeader.vue'
 import AppCardContainer from './components/AppCardContainer.vue'
 
+
 export default{
     name: 'App',
     components:{
         AppHeader,
         AppCardContainer,
     },
-
-    data(){
-            return{
-                titoloSezioneFilm: "Film",
-                titoloSezioneSerie: "Serie Tv",
-
-            }
-        },
 
 }
 
@@ -24,8 +17,7 @@ export default{
 <template>
     <AppHeader/>
     <main>
-        <AppCardContainer :title="titoloSezioneFilm"/>
-        <AppCardContainer :title="titoloSezioneSerie"/>
+        <AppCardContainer/>
     </main>
 </template>
 
