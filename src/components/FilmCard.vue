@@ -17,7 +17,9 @@
 
         methods:{
             changeHoverStatus(){
-                this.cardHover = !this.cardHover;
+                setTimeout(() => {
+                    this.cardHover = !this.cardHover;
+                }, "300");
             },
 
             getImagePath: function(imgPath){
@@ -32,7 +34,7 @@
 
 <template>
 
-    <div class="card" @mouseenter="changeHoverStatus" @mouseleave="changeHoverStatus">
+    <div class="card" @mouseenter.stop="changeHoverStatus" @mouseleave.stop="changeHoverStatus">
         <!-- contenuti da mostrare in default quando il puntatore non è sulla card -->
         <div  v-show="cardHover === false">
             <img :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
@@ -43,7 +45,7 @@
         </div>
         
         <!-- contenuti da mostrare quando il puntatore è sulla card -->
-        <div v-show="cardHover === true">
+        <div v-show="cardHover === true" class="info">
             <!-- titolo italiano -->
             <h3>{{ info.title }}</h3>
             <h3>{{ info.name }}</h3>
@@ -56,6 +58,7 @@
 
                 <!-- se la bandiera è presente nell'array stampa quella -->
                 <div class="flag" v-if="store.falgs.includes(info.original_language)">
+                    <div>Lingua Originale:</div>
                     <img :src="getImagePath(`../assets/flags/${info.original_language}.png`)" alt="">
                 </div>
                 <!-- altrimenti scrivi questo -->
@@ -65,6 +68,7 @@
 
                 <!-- voto -->
                 <div class="voto">
+                    <div>Voto:</div>
                     <!-- stampo in pagina in numero di stelle colorate che corrisponde al voto -->
                     <i v-for="colorStar in parseInt(Math.floor(info.vote_average / 2))" class="fa-star" :class="this.fullStar"></i>
                     <!-- sottraggo dalle cinque stelle non colorate il numero del voto asseganto alla pellicola, saranno sostituite dalle stelle colorate -->
@@ -97,6 +101,7 @@
         overflow-y: auto;
         scrollbar-width: none;
         position: relative;
+        transition: all 1s;
         // debug
 
         h2{
@@ -122,20 +127,33 @@
 
         .flag{
             position: relative;
-            height: 60px;
+            height: 75px;
             margin-bottom: 0.8em;
 
             img{
                 width: 15%;
                 position: absolute;
                 left: 50%;
-                top: 10px;
+                top: 25px;
                 transform: translate(-50%);
             }
+
         }
 
         .voto{
             margin: 1em 0;
+
+            i{
+                margin-top: 0.4em;
+            }
+        }
+
+        .info{
+            transform: rotateY(180deg);
+        }
+
+        &:hover{
+            transform: rotateY(180deg);
         }
 
     }
