@@ -113,6 +113,8 @@
 
         .film-cover{
             display: block;
+            height: 100%;
+            width: 100%;
             transition: all 0.6s;
         }
 
@@ -156,7 +158,6 @@
             background-color: black;
             height: 100%;
             width: 100%;
-            padding: 1em;
             transition: all 1s;
         }
 

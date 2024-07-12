@@ -56,6 +56,7 @@ import {store} from '../store'
         h2{
             color: $category-text-color;
             font-size: 25px;
+            margin-left: 0.5em;
         }
 
         .card-container{
