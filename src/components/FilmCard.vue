@@ -19,7 +19,7 @@
             changeHoverStatus(){
                 setTimeout(() => {
                     this.cardHover = !this.cardHover;
-                }, "300");
+                }, "455");
             },
 
             getImagePath: function(imgPath){
@@ -36,8 +36,8 @@
 
     <div class="card" @mouseenter.stop="changeHoverStatus" @mouseleave.stop="changeHoverStatus">
         <!-- contenuti da mostrare in default quando il puntatore non è sulla card -->
-        <div  v-show="cardHover === false">
-            <img :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
+        <div  v-show="cardHover === false" class="cover">
+            <img class="film-cover" :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
 
             <!-- se la voce poster ha valore null mostra il titolo della pellicola -->
             <h2 v-if="info.poster_path === null">{{ info.title }}</h2>
@@ -92,16 +92,11 @@
     @use "@fortawesome/fontawesome-free/css/all.min.css";
 
     .card{
-        background-color: black;
         color: white;
-        padding: 1em;
         margin: 0 1em 1em 1em;
         width: calc(100% / 3 - 2em);
         height: 540px;
-        overflow-y: auto;
-        scrollbar-width: none;
         position: relative;
-        transition: all 1s;
         // debug
 
         h2{
@@ -116,8 +111,9 @@
             margin: 1em 0;
         }
 
-        img{
+        .film-cover{
             display: block;
+            transition: all 0.6s;
         }
 
         .details{
@@ -149,11 +145,27 @@
         }
 
         .info{
+            background-color: black;
+            padding: 1em;
+            height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .cover{
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            padding: 1em;
+            transition: all 1s;
+        }
+
+        &:hover .cover{
             transform: rotateY(180deg);
         }
 
-        &:hover{
-            transform: rotateY(180deg);
+        &:hover .film-cover{
+            opacity: 0;
         }
 
     }
