@@ -27,7 +27,7 @@ import {store} from '../store'
 
         <div class="card-container">
 
-            <FilmCard v-for="card in store.filmList" :info="card"/>
+            <FilmCard v-for="(card, index) in store.filmList" :info="card"/>
 
         </div>
 
@@ -38,7 +38,7 @@ import {store} from '../store'
 
         <div class="card-container">
 
-            <FilmCard v-for="card in store.serieList" :info="card"/>
+            <FilmCard v-for="(card, index) in store.serieList" :info="card"/>
 
         </div>
 

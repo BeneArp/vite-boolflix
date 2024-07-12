@@ -10,6 +10,8 @@
             return{
                 store,
                 cardHover: false,
+                star: "fa-regular",
+                fullStar: "fa-solid",
             }
         },
 
@@ -22,7 +24,8 @@
                 return new URL(imgPath, import.meta.url).href;
             },
 
-        }
+        },
+
     }
 
 </script>
@@ -49,8 +52,8 @@
             <h4>{{ info.original_title }}</h4>
             <h4>{{ info.original_name }}</h4>
 
-            <!-- linga -->
             <div class="details">
+
                 <!-- se la bandiera è presente nell'array stampa quella -->
                 <div class="flag" v-if="store.falgs.includes(info.original_language)">
                     <img :src="getImagePath(`../assets/flags/${info.original_language}.png`)" alt="">
@@ -61,7 +64,12 @@
             
 
                 <!-- voto -->
-                <div class="stars">Voto: {{ Math.floor(info.vote_average / 2) }}</div>
+                <div class="voto">
+                    <!-- stampo in pagina in numero di stelle colorate che corrisponde al voto -->
+                    <i v-for="colorStar in parseInt(Math.floor(info.vote_average / 2))" class="fa-star" :class="this.fullStar"></i>
+                    <!-- sottraggo dalle cinque stelle non colorate il numero del voto asseganto alla pellicola, saranno sostituite dalle stelle colorate -->
+                    <i v-for="star in (5 - (parseInt(Math.floor(info.vote_average / 2))))" class="fa-star" :class="this.star"></i>
+                </div>
             </div>
 
             <!-- sinossi -->
@@ -76,6 +84,8 @@
 <style lang="scss" scoped>
     @use '../styles/partials/variables' as *;
     @use '../styles/partials/mixins' as *;
+    // font awesome
+    @use "@fortawesome/fontawesome-free/css/all.min.css";
 
     .card{
         background-color: black;
@@ -122,6 +132,10 @@
                 top: 10px;
                 transform: translate(-50%);
             }
+        }
+
+        .voto{
+            margin: 1em 0;
         }
 
     }
