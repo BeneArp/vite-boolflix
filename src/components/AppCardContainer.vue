@@ -54,13 +54,14 @@ import {store} from '../store'
         margin-top: 3em;
 
         h2{
-        color: $category-text-color;
-        font-size: 25px;
+            color: $category-text-color;
+            font-size: 25px;
         }
 
         .card-container{
             display: flex;
             flex-wrap: wrap;
+            align-items: flex-start;
             margin: 2em 0;
             // debug
             background-color: lightslategray;
