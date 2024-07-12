@@ -23,7 +23,7 @@ import {store} from '../store'
 <template>
 
     <div class="container">
-        <h2>Film</h2>
+        <h2 v-show="store.filmList.length >= 1">Film</h2>
 
         <div class="card-container">
 
@@ -34,7 +34,7 @@ import {store} from '../store'
     </div>
 
     <div class="container">
-        <h2>Serie Tv</h2>
+        <h2 v-show="store.serieList.length >= 1">Serie Tv</h2>
 
         <div class="card-container">
 
@@ -61,11 +61,9 @@ import {store} from '../store'
         .card-container{
             display: flex;
             flex-wrap: wrap;
-            align-items: flex-start;
             margin: 2em 0;
             // debug
             background-color: lightslategray;
-            height: 600px;
         }
     }
 

@@ -11,7 +11,15 @@
 
 
     <div class="card">
-        <p></p>
+        <img :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
+
+        <!-- se la voce poster ha valore null mostra il titolo della pellicola -->
+        <h2 v-if="info.poster_path === null">{{ info.original_title }}</h2>
+        <h2 v-if="info.poster_path === null">{{ info.original_name }}</h2>
+        
+        <h4>{{ info.original_title }}</h4>
+        <h4>{{ info.original_name }}</h4>
+        <p>{{ info.overview }}</p>
     </div>
 
 
@@ -27,7 +35,11 @@
         padding: 1em;
         margin: 0 1em 1em 1em;
         width: calc(100% / 3 - 2em);
+        min-height: 400px;
         // debug
-        height: 300px;
+
+        h2{
+            text-align: center;
+        }
     }
 </style>
