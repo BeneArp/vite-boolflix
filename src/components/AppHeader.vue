@@ -59,11 +59,7 @@ import axios from 'axios'
 
     },
 
-    // created(){
-    //     this.getFilmsList();
-    //     this.getSeriesList();
-    // }
-    }
+}
 
 </script>
 
