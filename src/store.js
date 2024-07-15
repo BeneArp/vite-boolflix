@@ -8,5 +8,7 @@ export const store = reactive({
     apiSerie:"https://api.themoviedb.org/3/search/tv?",
     searchWord: '',
     falgs: ["it", "en", "ja", "fr", "es", "de"],
+    genresApi: "https://api.themoviedb.org/3/genre/movie/list?",
+    genresList: [],
 });
 

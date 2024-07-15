@@ -42,5 +42,17 @@
         border: none;
         border-radius: 0 15px 15px 0;
     }
+
+    @media screen and (max-width: 500px) {
+        input{
+            padding: 0.6em 1em;
+            width: 100px;
+        }
+
+        button{
+            padding: 0.6em 1em;
+        }
+        
+    }
     
 </style>

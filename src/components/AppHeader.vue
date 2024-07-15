@@ -44,7 +44,19 @@ import axios from 'axios'
                     console.log(store.serieList);
                 })
             }
+        },
+
+        
+        getGenresList(){
+            let genresUrl = `${store.genresApi}${store.apiKey}`
+
+            axios.get(genresUrl).then(result => {
+                // console.log(result.data.genres);
+                store.genresList = result.data.genres;
+                console.log(store.genresList);
+            })
         }
+
     },
 
     // created(){
@@ -63,7 +75,7 @@ import axios from 'axios'
                 <h1>BOOLFLIX</h1>
             </div>
 
-            <AppReserch @search="getFilmsList(),getSeriesList()"/>
+            <AppReserch @search="getFilmsList(),getSeriesList(),getGenresList()"/>
 
         </div>
     </header>    

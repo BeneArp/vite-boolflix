@@ -1,4 +1,5 @@
 <script>
+    import { info } from 'sass';
     import {store} from '../store'
 
     export default {
@@ -25,7 +26,6 @@
             getImagePath: function(imgPath){
                 return new URL(imgPath, import.meta.url).href;
             },
-
         },
 
     }
@@ -37,11 +37,11 @@
     <div class="card" @mouseenter.stop="changeHoverStatus" @mouseleave.stop="changeHoverStatus">
         <!-- contenuti da mostrare in default quando il puntatore non è sulla card -->
         <div  v-show="cardHover === false" class="cover">
-            <img class="film-cover" :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
+            <img v-show="info.poster_path !== null" class="film-cover" :src="'https://image.tmdb.org/t/p/w342/' + info.poster_path" alt="">
 
             <!-- se la voce poster ha valore null mostra il titolo della pellicola -->
-            <h2 v-if="info.poster_path === null">{{ info.title }}</h2>
-            <h2 v-if="info.poster_path === null">{{ info.name }}</h2>
+            <h2 v-show="info.poster_path === null">{{ info.title }}</h2>
+            <h2 v-show="info.poster_path === null">{{ info.name }}</h2>
         </div>
         
         <!-- contenuti da mostrare quando il puntatore è sulla card -->
@@ -51,8 +51,9 @@
             <h3>{{ info.name }}</h3>
 
             <!-- titolo originale -->
-            <h4>{{ info.original_title }}</h4>
-            <h4>{{ info.original_name }}</h4>
+            <!-- viene mostrato solo se diverso dalla versione italiana -->
+            <h4 v-if="info.original_title !== info.title">{{ info.original_title }}</h4>
+            <h4 v-if="info.original_name !== info.name">{{ info.original_name }}</h4>
 
             <div class="details">
 
@@ -78,6 +79,8 @@
 
             <!-- sinossi -->
             <p>{{ info.overview }}</p>
+
+            <!-- <span v-for="genere in store.genresList" v-if="genere.includes(info.genre_ids)">{{ genere.id }}</span> -->
         </div>
 
     </div>
@@ -169,6 +172,21 @@
             opacity: 0;
         }
 
+    }
+
+    /* responsive */
+    @media screen and (max-width: 914px) {
+        .card{
+            width: calc(100% / 2 - 2em);
+        }
+        
+    }
+
+    @media screen and (max-width: 570px) {
+        .card{
+            width: calc(100% - 2em);
+        }
+        
     }
 
 </style>
